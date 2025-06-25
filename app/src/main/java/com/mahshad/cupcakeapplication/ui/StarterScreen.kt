@@ -19,6 +19,8 @@ fun QuantityButtons() {
         quantityOptions.forEach { item ->
             Button(
                 modifier = Modifier.fillMaxWidth(),
+                ///when the click happens, move to another page,
+                // update the quantity and update the price
                 onClick = {}
             ) {
                 Text("${item.first}")
