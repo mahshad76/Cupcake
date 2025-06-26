@@ -11,6 +11,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.mahshad.cupcakeapplication.ui.AppViewModel
+import com.mahshad.cupcakeapplication.ui.StarterScreen
 import com.mahshad.cupcakeapplication.ui.theme.CupcakeApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,28 +22,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             CupcakeApplicationTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    StarterScreen()
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CupcakeApplicationTheme {
-        Greeting("Android")
     }
 }

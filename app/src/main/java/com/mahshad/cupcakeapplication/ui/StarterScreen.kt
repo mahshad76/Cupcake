@@ -5,13 +5,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.mahshad.cupcakeapplication.data.DataSource.quantityOptions
 
 @Composable
-fun QuantityButtons() {
+fun StarterScreen(viewModel: AppViewModel = AppViewModel()) {
+    val state = viewModel.uiState.collectAsState()
+
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -19,9 +22,11 @@ fun QuantityButtons() {
         quantityOptions.forEach { item ->
             Button(
                 modifier = Modifier.fillMaxWidth(),
-                ///when the click happens, move to another page,
-                // update the quantity and update the price
-                onClick = {}
+                onClick = {
+                    viewModel.updateQuantity(item.second)
+                    viewModel.updatePrice()
+                    ///navigation
+                }
             ) {
                 Text("${item.first}")
             }
@@ -31,6 +36,6 @@ fun QuantityButtons() {
 
 @Preview
 @Composable
-fun show() {
-    QuantityButtons()
+fun Show() {
+    StarterScreen()
 }

@@ -8,11 +8,17 @@ import kotlinx.coroutines.flow.update
 
 class AppViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(UiState())
-    private val uiState = _uiState.asStateFlow()
+    val uiState = _uiState.asStateFlow()
 
     fun updateQuantity(quantity: Int) {
         _uiState.update { stateValue ->
             stateValue.copy(quantity = quantity)
+        }
+    }
+
+    fun updatePrice() {
+        _uiState.update { stateValue ->
+            stateValue.copy(price = stateValue.quantity * 2)
         }
     }
 }
