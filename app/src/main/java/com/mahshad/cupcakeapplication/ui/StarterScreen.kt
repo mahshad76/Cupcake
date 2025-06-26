@@ -5,15 +5,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.mahshad.cupcakeapplication.data.DataSource.quantityOptions
 
 @Composable
-fun StarterScreen(viewModel: AppViewModel = AppViewModel()) {
-    val state = viewModel.uiState.collectAsState()
+fun StarterScreen(
+    price: Int,
+    quantity: Int,
+    onClick: (Int) -> Unit
+) {
 
     Column(
         modifier = Modifier.fillMaxWidth(),
@@ -22,11 +23,7 @@ fun StarterScreen(viewModel: AppViewModel = AppViewModel()) {
         quantityOptions.forEach { item ->
             Button(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = {
-                    viewModel.updateQuantity(item.second)
-                    viewModel.updatePrice()
-                    ///navigation
-                }
+                onClick = { onClick(item.second) }
             ) {
                 Text("${item.first}")
             }
@@ -34,8 +31,8 @@ fun StarterScreen(viewModel: AppViewModel = AppViewModel()) {
     }
 }
 
-@Preview
-@Composable
-fun Show() {
-    StarterScreen()
-}
+//@Preview
+//@Composable
+//fun Show() {
+//    StarterScreen()
+//}
