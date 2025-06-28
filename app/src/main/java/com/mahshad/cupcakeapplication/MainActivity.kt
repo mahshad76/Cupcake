@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.mahshad.cupcakeapplication.ui.CupcakeApp
 import com.mahshad.cupcakeapplication.ui.theme.CupcakeApplicationTheme
 
@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             CupcakeApplicationTheme {
-                CupcakeApp(NavHostController(this))
+                CupcakeApp(rememberNavController())
             }
         }
     }

@@ -6,6 +6,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -15,9 +16,9 @@ import com.mahshad.cupcakeapplication.Routes
 
 fun CupcakeApp(
     navController: NavHostController,
-    viewModel: AppViewModel = AppViewModel()
+    viewModel: AppViewModel = viewModel()
 ) {
-    var uiState = viewModel.uiState.collectAsState()
+    val uiState = viewModel.uiState.collectAsState()
 
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         NavHost(
@@ -27,12 +28,13 @@ fun CupcakeApp(
         ) {
             composable(route = Routes.Starter.name) {
                 StarterScreen(
-                    uiState.value.quantity,
-                    uiState.value.price,
+                    quantity = uiState.value.quantity,
+                    price = uiState.value.price,
                     onClick = { quantity: Int ->
                         viewModel.updateQuantity(quantity)
                         viewModel.updatePrice()
                     },
+                    navController = navController
                 )
             }
 
